@@ -1,23 +1,611 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+    <!-- JSON-LD Structured Data for Service Snippet Optimization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "다이렉트 실비보험 비교 및 가입 상담",
+      "provider": {
+        "@type": "Organization",
+        "name": "다이렉트 보험 비교센터",
+        "url": "https://yourdomain.com",
+        "logo": "https://yourdomain.com/logo.png"
+      },
+      "areaServed": {
+        "@type": "State",
+        "name": "대한민국"
+      },
+      "description": "다이렉트 채널을 통해 저렴하게 가입하는 실비보험 비교 서비스를 제공합니다. 2026년 실비보험 변경사항을 반영한 최신 정보를 확인하세요.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "다이렉트 실비보험 상품 목록",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "4세대 실비보험 기본형"
+            },
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "10000",
+              "priceCurrency": "KRW",
+              "description": "기본 보장 항목에 대한 표준형 실비보험"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "4세대 실비보험 특약형"
+            },
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "15000",
+              "priceCurrency": "KRW",
+              "description": "도수치료, 비급여 주사료, MRI 등 특약 추가형 실비보험"
+            }
+          }
+        ]
+      },
+      "url": "https://yourdomain.com"
+    }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+        /* Base Styles */
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+            background-color: #f8f9fa; /* Light background */
+            color: #333;
+        }
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #007bff; /* Main brand color */
+            color: white;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.9), rgba(4, 91, 185, 0.8));
+            z-index: -1;
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+        }
+        h2 {
+            color: #007bff;
+            font-size: 2rem;
+            margin-top: 2.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #007bff;
+            display: inline-block;
+            text-align: left;
+        }
+        h3 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            border-left: 5px solid #007bff;
+            padding-left: 1rem;
+        }
+
+        /* Navigation Styles */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Section Styles */
+        section {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            margin-bottom: 2.5rem;
+        }
+        section p, section ul, section dl {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        th, td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f0f8ff; /* Light blue header */
+            color: #007bff;
+            font-weight: 700;
+            border-bottom: 2px solid #007bff;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f0f8ff;
+        }
+        .highlight {
+            font-weight: 700;
+            color: #dc3545; /* Red highlight for emphasis */
+        }
+        .table-center th, .table-center td {
+            text-align: center;
+        }
+
+        /* FAQ (Accordion) Styles */
+        dl dt {
+            cursor: pointer;
+            padding: 1rem;
+            margin-top: 10px;
+            background-color: #f1f1f1;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        dl dt:hover {
+            background-color: #e9ecef;
+        }
+        dl dt.active {
+            background-color: #007bff;
+            color: white;
+        }
+        dl dd {
+            background-color: #ffffff;
+            padding: 1rem;
+            margin: 0;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            display: none; /* Hidden by default */
+        }
+        dl dt.active + dd {
+            display: block;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background-color: #ffc107; /* Bright yellow/orange highlight color */
+            color: #333;
+            font-weight: 700;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            margin: 2rem 0;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(255, 193, 7, 0.4);
+        }
+        .cta-button:hover {
+            background-color: #e0a800;
+            transform: translateY(-3px);
+        }
+
+        /* Keyword Tags */
+        .keyword-tags {
+            margin: 1.5rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .keyword-tags a {
+            background-color: #e3f2fd;
+            color: #007bff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            border: 1px solid #bbdefb;
+        }
+        .keyword-tags a:hover {
+            background-color: #bbdefb;
+        }
+
+        /* External Links Section */
+        .external-links ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .external-links li {
+            margin-bottom: 15px;
+        }
+        .external-links a {
+            display: block;
+            background-color: #f0f4f8;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            border-left: 5px solid #007bff;
+        }
+        .external-links a:hover {
+            background-color: #e9ecef;
+        }
+
+        /* Input Form Styles */
+        .input-form {
+            background-color: #f0f8ff; /* Light blue background for form */
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="date"],
+        .form-group input[type="number"],
+        .form-group select {
+            width: calc(100% - 24px);
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        .form-group button {
+            background-color: #ffc107;
+            color: #333;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: background-color 0.3s ease;
+        }
+        .form-group button:hover {
+            background-color: #e0a800;
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: #888;
+            background-color: #e9ecef;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>다이렉트 실비보험, 합리적인 보험료로 준비하는 방법</h1>
+        <p>복잡한 설계사 수수료 없이, 직접 비교하고 가입하여 보험료를 절약하세요.</p>
+        <nav>
+            <ul>
+                <li><a href="#intro">실비보험이란?</a></li>
+                <li><a href="#compare">상품 비교 분석</a></li>
+                <li><a href="#guide">가입 가이드</a></li>
+                <li><a href="#future">2026년 전망</a></li>
+                <li><a href="#faq">자주 묻는 질문</a></li>
+                <li><a href="#contact">1:1 맞춤 상담</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <!-- Section 1: Introduction to Direct Actual Cost Insurance -->
+        <section id="intro">
+            <h2>다이렉트 실비보험, 왜 주목해야 할까요?</h2>
+            <p><strong>다이렉트 실비보험</strong>은 설계사를 통하지 않고 보험사와 고객이 직접 계약하는 방식으로, 보험료를 절감할 수 있는 가장 합리적인 방법으로 꼽힙니다. 실비보험(실손의료보험)은 대한민국 국민이라면 반드시 가입해야 할 필수 보험으로, 질병이나 상해로 인해 발생하는 입원비, 통원비 등 실제 의료비를 보장해주는 상품입니다. 다이렉트 채널을 이용하면 설계사에게 지급되는 수수료가 절감되어 일반적으로 대면 채널 대비 10~30% 저렴한 보험료로 동일한 보장을 받을 수 있습니다.</p>
+
+            <h3>실비보험 가입의 중요성</h3>
+            <p>실비보험은 국민건강보험에서 보장하지 않는 비급여 항목까지 일정 부분 보장하여, 예상치 못한 의료비 지출에 대한 부담을 크게 줄여줍니다. 특히 고령화 사회로 접어들면서 의료비 지출이 증가하는 추세이기 때문에, 젊을 때부터 저렴한 보험료로 가입해 두는 것이 현명합니다. 실비보험은 보험사별 보장 내용이 거의 표준화되어 있기 때문에, 다이렉트로 여러 회사의 상품을 비교하는 것이 보험료 절감의 핵심입니다. </p>
+
+            <div class="keyword-tags" aria-label="다이렉트 실비보험 관련 핵심 키워드">
+                <a href="#compare">다이렉트 실비보험 비교</a>
+                <a href="#guide">실비보험 가입 조건</a>
+                <a href="#faq">실비보험 비갱신</a>
+                <a href="#compare">실비보험 4세대</a>
+                <a href="#future">2026년 실비보험 변경</a>
+                <a href="#guide">실비보험 청구</a>
+            </div>
+        </section>
+
+        <!-- Section 2: Product Comparison and Analysis -->
+        <section id="compare">
+            <h2>실비보험 상품 핵심 비교 분석: 4세대 실비보험을 중심으로</h2>
+            <p>현재 판매되는 실비보험은 대부분 4세대 실비보험입니다. 4세대 실비보험은 기존 1~3세대 실비보험과 달리 비급여 항목에 대한 자기부담금이 상향되고, 보험료 차등제(할인/할증)가 도입된 것이 특징입니다. 2026년에는 이 4세대 실비보험 제도가 더욱 정교화될 것으로 예상됩니다. 다이렉트 채널을 이용하면 각 보험사의 4세대 실비보험 상품을 한눈에 비교할 수 있습니다.</p>
+
+            <h3>4세대 실비보험의 주요 특징</h3>
+            <ul>
+                <li><strong>비급여 보험료 차등제 도입:</strong> 비급여 치료를 많이 받은 가입자에게 보험료 할증을 적용하고, 비급여 치료를 적게 받은 가입자에게는 보험료 할인을 제공합니다. 이는 불필요한 의료 쇼핑을 방지하고 보험 재정 건전성을 높이기 위한 조치입니다.</li>
+                <li><strong>보장 구조 변경:</strong> 급여 항목과 비급여 항목을 분리하여 보장합니다. 급여 항목은 자기부담금이 20%로, 비급여 항목은 자기부담금이 30%로 적용됩니다.</li>
+                <li><strong>특약 분리:</strong> 도수치료, 비급여 주사료, MRI/MRA 등 보장 횟수나 금액에 제한이 있는 비급여 항목을 특약으로 분리하여 가입 여부를 선택할 수 있게 했습니다.</li>
+            </ul>
+
+            <h3>주요 보험사별 실비보험료 비교 (예시)</h3>
+            <p>아래 표는 40세 남성, 4세대 실비보험, 기본형 가입 기준 대략적인 월 보험료 예시이며, 실제 보험료는 가입자의 직업, 병력 등에 따라 달라질 수 있습니다. 다이렉트 채널에서는 실시간으로 보험료를 비교할 수 있습니다.</p>
+            <table class="table-center">
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>A사</th>
+                        <th>B사</th>
+                        <th>C사</th>
+                        <th>D사</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>월 보험료 (40세 남성 기준)</td>
+                        <td><span class="highlight">12,500원</span></td>
+                        <td>13,000원</td>
+                        <td>12,800원</td>
+                        <td>13,500원</td>
+                    </tr>
+                    <tr>
+                        <td>갱신 주기</td>
+                        <td>1년</td>
+                        <td>1년</td>
+                        <td>1년</td>
+                        <td>1년</td>
+                    </tr>
+                    <tr>
+                        <td>재가입 주기</td>
+                        <td>5년</td>
+                        <td>5년</td>
+                        <td>5년</td>
+                        <td>5년</td>
+                    </tr>
+                    <tr>
+                        <td>비급여 자기부담금</td>
+                        <td>30%</td>
+                        <td>30%</td>
+                        <td>30%</td>
+                        <td>30%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Section 3: In-depth Subscription Guide and Policy Information -->
+        <section id="guide">
+            <h2>다이렉트 실비보험 가입 절차 및 유의사항</h2>
+            <p>다이렉트 실비보험 가입은 매우 간편하지만, 몇 가지 주의사항을 확인해야 합니다. 특히 기존에 다른 보험에 가입되어 있거나 병력이 있는 경우, 고지의무를 반드시 지켜야 합니다. 고지의무 위반 시 보험금 지급 거절 또는 계약 해지 사유가 될 수 있으므로 주의해야 합니다.</p>
+
+            <h3>다이렉트 실비보험 가입 필수 체크리스트</h3>
+            <ul class="check-list">
+                <li><strong>고지의무 확인:</strong> 최근 3개월 이내 의사 진찰 및 검사를 통한 질병 확정이나 치료 이력, 최근 1년 이내 의사로부터 추가 검사 재검사 소견, 최근 5년 이내 입원, 수술, 7일 이상 통원 치료 이력 등이 있다면 반드시 고지해야 합니다.</li>
+                <li><strong>중복 가입 확인:</strong> 실비보험은 여러 개 가입하더라도 비례 보상 원칙에 따라 보험금 청구 시 가입한 모든 보험사에서 의료비를 나눠 지급하므로 중복 가입은 불필요합니다. 기존 가입 여부를 반드시 확인해야 합니다.</li>
+                <li><strong>청구 방법 숙지:</strong> 다이렉트 채널로 가입하더라도 보험금 청구는 동일하게 진행됩니다. 보험사 앱이나 홈페이지를 통해 진료 영수증과 세부 내역서를 첨부하여 간편하게 청구할 수 있습니다.</li>
+            </ul>
+
+            <h3>가입 거절 시 대안: 유병력자 실비보험</h3>
+            <p>만약 기존 병력으로 인해 표준형 실비보험 가입이 거절되었다면, <strong>유병력자 실비보험</strong> 가입을 고려할 수 있습니다. 유병력자 실비보험은 표준형에 비해 가입 심사가 완화되었으나, 보험료가 비싸고 보장 범위가 좁다는 단점이 있습니다. 다이렉트 비교 시스템을 통해 유병력자 실비보험의 상품 비교도 가능합니다.</p>
+
+            <h3>다이렉트 실비보험 가입 시 보험료 절약 팁</h3>
+            <p>실비보험은 갱신형 상품이므로 가입 시점에 보험료가 저렴하더라도 갱신 시점에 보험료가 인상될 수 있습니다. 다이렉트 채널을 활용하여 보험료를 절약하는 방법은 다음과 같습니다.</p>
+            <ol>
+                <li><strong>특약 분리:</strong> 비급여 3종(도수치료, 주사료, MRI) 특약을 제외하고 기본형으로만 가입하면 보험료를 크게 줄일 수 있습니다. 해당 특약을 필요로 하지 않는다면 제외하는 것이 현명합니다.</li>
+                <li><strong>다이렉트 비교:</strong> 여러 보험사의 상품을 비교하여 최저가 상품을 선택합니다.</li>
+                <li><strong>보험료 차등제 활용:</strong> 4세대 실비보험 가입 후 비급여 항목 청구를 최대한 자제하여 다음 갱신 시 보험료 할인 혜택을 받는 전략을 고려할 수 있습니다.</li>
+            </ol>
+        </section>
+
+        <!-- Section 4: 2026 Policy Outlook and Future Trends -->
+        <section id="future">
+            <h2>2026년 실비보험 제도 변화 전망 및 대응 전략</h2>
+            <p>실비보험은 국민 의료비 부담 경감이라는 공익적인 목적이 강해, 정부와 금융당국의 제도 변화가 잦습니다. 2026년에는 현재의 4세대 실비보험 제도가 정착되고 더욱 강화될 것으로 예상됩니다. 특히, 건강보험 보장성 강화 정책(문재인 케어)의 영향으로 급여 항목이 늘어나면서 비급여 항목에 대한 관리가 중요해지고 있습니다. 2026년 실비보험 시장의 주요 변화를 미리 예측하고 대비해야 합니다.</p>
+
+            <h3>예상되는 2026년 실비보험 주요 변화</h3>
+            <ol>
+                <li><strong>비급여 보험료 차등제 세분화:</strong> 현재 4세대 실비보험의 비급여 보험료 차등제는 1등급(할인)부터 5등급(할증)까지 구분됩니다. 2026년에는 이 등급제가 더욱 세분화되거나, 특정 질병군에 대한 할증률이 조정될 수 있습니다. 특히 경증 질환에 대한 잦은 비급여 이용 시 할증률이 높아질 가능성이 있습니다.</li>
+                <li><strong>신규 비급여 항목에 대한 보장 기준 재조정:</strong> 첨단 의료기술의 발전으로 새로운 비급여 항목(예: AI 진단, 유전자 검사)이 등장하고 있습니다. 2026년에는 이러한 신규 항목에 대한 실비보험 보장 여부와 기준이 명확히 설정되거나, 특약 형태로 추가될 수 있습니다.</li>
+                <li><strong>보험료 갱신 주기 조정 가능성:</strong> 현재 1년 갱신 5년 재가입 형태인 4세대 실비보험의 갱신 주기 조정에 대한 논의가 진행될 수 있습니다. 특히 건강한 가입자의 보험료 부담을 줄이기 위한 방안으로 장기 무사고 가입자에 대한 인센티브가 강화될 수 있습니다.</li>
+            </ol>
+            <p>2026년의 변화에 선제적으로 대응하기 위해서는 현재의 건강 상태가 좋을 때 다이렉트 실비보험에 가입해 두는 것이 유리합니다. 특히 4세대 실비보험의 장점인 비급여 차등제를 활용하여 건강 관리를 철저히 하면, 향후 보험료 할증을 피하고 할인 혜택을 받을 수 있습니다.</p>
+        </section>
+
+        <!-- Section 5: FAQ and Misconceptions (Snippet Optimization) -->
+        <section id="faq">
+            <h2>자주 묻는 질문 (FAQ): 실비보험 고수의 궁금증 해소</h2>
+            <p><strong>네이버 지식iN</strong>에서 <strong>'실비보험'</strong>을 검색한 사용자들의 궁금증을 모아보았습니다. 다이렉트 가입 전 반드시 확인하고 가세요.</p>
+            <dl>
+                <dt tabindex="0" aria-expanded="false">다이렉트 실비보험이 설계사 가입 상품보다 보장이 정말 동일한가요?</dt>
+                <dd>네, 동일합니다. 실비보험은 금융감독원에서 표준화된 약관을 따르도록 규정하고 있기 때문에, A보험사의 다이렉트 상품과 설계사 상품은 보장 내용이 완전히 같습니다. 다만, 보험료를 절감하기 위해 특약을 제외하고 기본형으로만 가입하는 경우가 많으므로 보장 범위가 다르다고 오해할 수 있습니다. 다이렉트 채널의 장점은 순수하게 '보험료' 절감에 있습니다.</dd>
+                <dt tabindex="0" aria-expanded="false">비갱신형 실비보험은 없나요? 왜 모두 갱신형인가요?</dt>
+                <dd>현재 판매되는 모든 실비보험(실손의료보험)은 1년 갱신형 상품입니다. 이는 실비보험의 특성상 의료수가 변동, 손해율 증가 등에 따라 보험료가 변동해야 하므로 비갱신형으로는 판매가 불가능합니다. 다만, 4세대 실비보험은 5년마다 재가입을 통해 보장 내용이 변경될 수 있습니다.</dd>
+                <dt tabindex="0" aria-expanded="false">실비보험에 가입하면 모든 병원비가 100% 보장되나요?</dt>
+                <dd>아닙니다. 실비보험은 자기부담금이 존재합니다. 4세대 실비보험의 경우 급여 항목은 20%, 비급여 항목은 30%의 자기부담금을 제외한 금액을 보장합니다. 또한, 국민건강보험법상 요양급여에 해당하지 않는 일부 항목(미용 목적 성형 수술, 건강 검진 등)은 보장하지 않습니다.</dd>
+                <dt tabindex="0" aria-expanded="false">다이렉트 실비보험 가입 시, 어떤 서류가 필요한가요?</dt>
+                <dd>일반적으로는 별도의 서류 없이 온라인 고지사항만으로 가입이 가능합니다. 다만, 고지사항에 해당되는 병력이나 치료 이력이 있는 경우, 진료 기록지나 건강검진 결과서 등을 요청받을 수 있습니다.</dd>
+            </dl>
+        </section>
+
+        <!-- Section 6: User Engagement - Premium Calculation Form -->
+        <section id="contact" class="input-form">
+            <h2>다이렉트 실비보험 맞춤 견적 신청</h2>
+            <p><strong>'다이렉트 실비보험'</strong>은 가입자의 나이, 성별, 직업, 병력에 따라 보험료가 달라집니다. 아래 간단한 정보를 입력하시면 <strong>1:1 맞춤 상담</strong>을 통해 실시간으로 최저가 보험료를 비교해 드립니다.</p>
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="name">이름:</label>
+                    <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="dob">생년월일:</label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">성별:</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">선택</option>
+                        <option value="male">남성</option>
+                        <option value="female">여성</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="phone">연락처:</label>
+                    <input type="text" id="phone" name="phone" placeholder="전화번호를 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="history">최근 5년 이내 치료 이력 (예: 입원, 수술, 7일 이상 통원):</label>
+                    <select id="history" name="history" required>
+                        <option value="no">없음</option>
+                        <option value="yes">있음</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit">맞춤 보험료 비교 요청</button>
+                </div>
+            </form>
+            <a href="tel:01012345678" class="cta-button" aria-label="전화로 견적 상담받기">전화로 바로 상담받기 📞</a>
+        </section>
+
+        <!-- Section 7: External Links for Credibility -->
+        <section class="external-links">
+            <h2>신뢰할 수 있는 실비보험 관련 정보 출처</h2>
+            <p>실비보험 제도에 대한 정확한 정보는 금융감독원, 보건복지부 등 공인된 기관에서 확인하는 것이 중요합니다. 아래 외부 링크를 통해 더 많은 정보를 얻을 수 있습니다.</p>
+            <ul>
+                <li><a href="https://www.fss.or.kr/" target="_blank">금융감독원 (FSS) - 보험 상품 정보 및 민원 안내</a></li>
+                <li><a href="https://www.kidi.or.kr/" target="_blank">보험개발원 - 실손의료보험 관련 통계 및 정보</a></li>
+                <li><a href="https://www.molit.go.kr/" target="_blank">보건복지부 - 건강보험 및 의료비 지원 정책</a></li>
+                <li><a href="https://namu.wiki/w/%EC%8B%A4%EC%86%90%EC%9D%98%EB%A3%8C%EB%B3%B4%ED%97%98" target="_blank">실손의료보험 나무위키 - 일반적인 정보 및 역사</a></li>
+                <li><a href="https://www.molit.go.kr/USR/policyData/m_view.jsp?p_id=20240405161403" target="_blank">국민건강보험공단 - 급여 및 비급여 항목 기준</a></li>
+            </ul>
+        </section>
+
+        <!-- Long Text Generation for Content Volume (20,000 character requirement) -->
+        <section id="detailed-info">
+            <h2>심화 학습: 다이렉트 실비보험의 심층 분석 및 활용 전략</h2>
+            <p>다이렉트 실비보험은 단순히 보험료가 저렴한 것을 넘어, 현대인의 의료비 지출 패턴에 최적화된 상품입니다. 2020년대 들어 비급여 진료 비중이 급증하면서 실비보험의 역할이 더욱 중요해졌습니다. 특히 4세대 실비보험은 비급여 항목에 대한 자기부담금 상향 및 보험료 차등제 도입을 통해 가입자의 책임감을 높이고 있습니다. 이 섹션에서는 다이렉트 실비보험의 구조를 심층적으로 분석하고, 가입자들이 놓치기 쉬운 세부 사항들을 다룹니다.</p>
+
+            <h3>1. 실비보험의 보장 구조와 비례 보상 원칙</h3>
+            <p>실비보험은 가입자가 실제로 지출한 의료비를 보장하는 '비례 보상'을 원칙으로 합니다. 이는 가입자가 여러 개의 실비보험에 가입했더라도 중복으로 보험금을 받을 수 없음을 의미합니다. 예를 들어, 2개의 실비보험에 가입한 경우에도 실제 병원비의 100%를 초과하여 받을 수 없습니다. 보험사 간에 비례하여 보험금을 분담하여 지급합니다. 따라서 다이렉트 실비보험 가입을 고려할 때, 기존 가입 여부를 반드시 확인해야 합니다. 중복 가입은 불필요한 보험료 지출만 초래합니다. 기존 실비보험의 보장 내용이 불만족스럽다면, 기존 계약을 해지하고 새로운 다이렉트 상품으로 갈아타는 것이 현명한 선택일 수 있습니다.</p>
+
+            <h3>2. 4세대 실비보험의 보험료 차등제 심층 분석</h3>
+            <p>4세대 실비보험에서 가장 중요한 변화는 비급여 보험료 차등제입니다. 이는 비급여 진료 이용량이 적은 가입자에게 보험료 할인 혜택을 제공하고, 이용량이 많은 가입자에게는 할증을 적용하는 제도입니다. 이 제도는 2026년에 더욱 정교하게 운영될 것으로 예상됩니다. 보험료 차등제의 등급은 1등급(할인)부터 5등급(할증)까지 나뉩니다. 1년 동안 비급여 보험금 수령액이 100만 원 미만인 경우 할인을 받을 수 있으며, 100만 원 이상일 경우 할증이 적용됩니다. 다이렉트 보험사들은 이 제도를 적극적으로 홍보하며 건강한 가입자를 유치하고 있습니다. 다이렉트 채널을 통해 가입할 경우, 초기 보험료가 저렴한 것에 더해 건강 관리를 통해 추가적인 할인을 받을 수 있어 더욱 유리합니다.</p>
+
+            <h3>3. 다이렉트 실비보험 가입 시 고지의무 위반 문제</h3>
+            <p>다이렉트 실비보험 가입 시 가장 흔하게 발생하는 문제는 고지의무 위반입니다. 설계사가 없는 다이렉트 채널에서는 가입자가 스스로 고지해야 할 항목을 정확히 이해하고 입력해야 합니다. 특히 최근 3개월 이내 병원 진료 기록, 1년 이내 재검사 소견, 5년 이내 입원/수술/계속된 치료 기록 등이 있다면 반드시 고지해야 합니다. 만약 고지의무를 위반하고 가입한 사실이 나중에 드러나면, 보험사는 계약을 해지하거나 보험금 지급을 거절할 수 있습니다. 경미한 질병이라도 고지 의무 대상인지 아닌지 꼼꼼하게 확인하는 것이 중요합니다. 다이렉트 보험사의 상담사를 통해 고지 의무 사항을 정확히 확인하는 과정을 거쳐야 합니다.</p>
+
+            <h3>4. 실비보험 외 보완해야 할 보험 상품</h3>
+            <p>실비보험은 실제 의료비를 보장하는 훌륭한 보험이지만, 진단비나 입원 일당 등 소득 상실에 대한 보장은 제공하지 않습니다. 따라서 실비보험 외에 암보험, 뇌혈관질환 보험, 심혈관질환 보험 등 3대 질병 진단비 보험을 별도로 준비하는 것이 좋습니다. 다이렉트 보험사들은 종종 실비보험과 함께 이러한 진단비 보험을 결합하여 판매하므로, 다이렉트 채널에서 통합적으로 비교해 보는 것이 편리합니다. 이 또한 다이렉트 채널을 통해 가입하면 설계사 수수료가 절감되어 저렴하게 준비할 수 있습니다.</p>
+
+            <h3>5. 실비보험과 노후 의료비 대비 전략</h3>
+            <p>노후에는 의료비 지출이 급증하므로, 실비보험은 노후 대비의 핵심입니다. 하지만 60세 이후에는 실비보험 가입이 거절되거나 보험료가 매우 높아질 수 있습니다. 따라서 가능한 한 젊을 때 다이렉트 실비보험에 가입하는 것이 유리합니다. 특히 4세대 실비보험은 재가입 주기가 5년이므로, 노후에는 변경된 약관에 따라 보험료가 조정될 수 있음을 염두에 두어야 합니다. 다이렉트 비교 시스템을 통해 노후에 예상되는 보험료 인상률을 미리 확인하고 장기적인 재정 계획을 세울 필요가 있습니다.</p>
+
+            <h3>6. 2026년 실비보험 제도 변화에 따른 대응 방안</h3>
+            <p>2026년에는 실비보험의 비급여 차등제가 더욱 엄격하게 적용될 가능성이 높습니다. 건강한 가입자의 혜택을 늘리고, 과도한 비급여 진료를 억제하는 방향으로 정책이 강화될 것입니다. 따라서 가입자들은 불필요한 비급여 진료를 피하고, 건강 관리를 통해 보험료 할인을 받는 전략이 중요해집니다. 또한, 보험금 청구 시 서류를 꼼꼼하게 준비하고 비급여 진료 항목에 대해 미리 확인할 필요가 있습니다. 다이렉트 보험사는 2026년 예상되는 변화에 맞춰 상품을 업데이트할 것이므로, 꾸준히 비교 정보를 확인하는 것이 중요합니다.</p>
+
+            <h3>7. 다이렉트 보험의 단점과 극복 방안</h3>
+            <p>다이렉트 보험은 보험료가 저렴하다는 장점이 있지만, 설계사의 전문적인 조언이 없다는 단점이 있습니다. 가입자가 스스로 보장 내용을 분석하고 상품을 선택해야 하므로, 보험에 대한 이해가 부족한 경우 어려움을 겪을 수 있습니다. 하지만 본 사이트와 같은 전문 비교 플랫폼을 이용하거나 다이렉트 보험사의 상담사를 통해 충분한 설명을 들으면 이러한 단점을 극복할 수 있습니다. 특히 실비보험은 보장이 표준화되어 있어 다른 보험 상품에 비해 가입이 비교적 쉽다는 장점이 있습니다.</p>
+
+            <h3>8. 실비보험 청구 시 유의사항: 잦은 청구의 위험성</h3>
+            <p>4세대 실비보험은 잦은 비급여 청구 시 보험료 할증이 적용됩니다. 이는 실비보험을 감기 등 경미한 질환에 자주 사용하는 것을 억제하려는 목적입니다. 따라서 1년 동안의 비급여 진료액을 계산하여 할증 기준을 넘기지 않도록 관리하는 것이 중요합니다. 다이렉트 실비보험 가입자들은 이 부분을 특히 유념하여 잦은 병원 방문에 신중을 기해야 합니다.</p>
+
+            <p>다이렉트 실비보험은 합리적인 소비를 지향하는 현대인에게 가장 적합한 선택지입니다. 하지만 꼼꼼한 비교와 정확한 정보 숙지가 필수입니다. 본 사이트에서는 최신 정보를 바탕으로 고객님께 가장 적합한 다이렉트 실비보험 상품을 추천해 드립니다. 2026년에도 변화하는 실비보험 시장에서 현명하게 대비할 수 있도록 지속적인 가이드를 제공하겠습니다. 지금 바로 무료 비교 견적을 신청하여 최저가 보험료를 확인하세요.</p>
+        </section>
+        <!-- End of Long Text Generation -->
+
     </main>
-  </body>
+
+    <footer>
+        <p>&copy; 2026 다이렉트 실비보험 비교센터. 모든 권리 보유.</p>
+    </footer>
+
+    <script>
+        // FAQ 아코디언 기능 (접기/펼치기)
+        document.querySelectorAll('dl dt').forEach((dt) => {
+            dt.addEventListener('click', () => {
+                const isActive = dt.classList.contains('active');
+                document.querySelectorAll('dl dt').forEach(item => {
+                    item.classList.remove('active');
+                    item.setAttribute('aria-expanded', 'false');
+                    // dd 태그 숨기기
+                    if (item.nextElementSibling) {
+                        item.nextElementSibling.style.display = 'none';
+                    }
+                });
+                if (!isActive) {
+                    dt.classList.add('active');
+                    dt.setAttribute('aria-expanded', 'true');
+                    // dd 태그 보이기
+                    if (dt.nextElementSibling) {
+                        dt.nextElementSibling.style.display = 'block';
+                    }
+                }
+            });
+            dt.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    dt.click();
+                }
+            });
+        });
+    </script>
+</body>
 </html>
